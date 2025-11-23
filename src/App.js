@@ -50,7 +50,7 @@ function App() {
       {/* Header */}
       <header className="header">
         <img src={logo} alt="logo" className="logo" />
-        <h2>OkieDokie DMC Finder</h2>
+        <h2>OkieDokie<br/> Admit Card Finder</h2>
       </header>
 
       {/* Search Card */}
