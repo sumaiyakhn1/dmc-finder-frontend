@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 
-// Logo coming from PUBLIC folder
 const logo = "/logo.webp";
 
 function App() {
@@ -48,14 +47,19 @@ function App() {
     <div className="page">
 
       {/* Header */}
-      <header className="header">
-        <img src={logo} alt="logo" className="logo" />
-        <h2>OkieDokie<br/> Admit Card Finder</h2>
+      <header className="header header-row">
+        <div className="header-left">
+          <img src={logo} alt="logo" className="logo-big" />
+          <div className="header-text">
+            <h1 className="brand">OkieDokie</h1>
+            <p className="sub">Admit Card Finder</p>
+          </div>
+        </div>
       </header>
 
       {/* Search Card */}
-      <div className="search-card">
-        <h3>Enter Your College Roll Number</h3>
+      <div className="search-card fade-in">
+        <h3 className="card-title">Enter Your College Roll Number</h3>
 
         <div className="input-row">
           <input
@@ -63,25 +67,37 @@ function App() {
             placeholder="e.g. 1230100207"
             value={roll}
             onChange={(e) => setRoll(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && searchRoll()}
           />
-          <button onClick={searchRoll}>Search</button>
+          <button onClick={searchRoll} className="search-btn">
+            Search
+          </button>
         </div>
 
         {loading && <div className="spinner"></div>}
-
         {error && <p className="error">{error}</p>}
 
         {result && (
-          <div className="result-box">
+          <div className="result-box slide-up">
             <p><strong>College Roll:</strong> {result.college_roll}</p>
             <p><strong>Exam Roll:</strong> {result.exam_roll}</p>
             <p><strong>File:</strong> {result.file_name}</p>
 
             <div className="btn-row">
-              <a className="view-btn" href={result.drive_view_url} target="_blank" rel="noopener noreferrer">
+              <a
+                className="view-btn"
+                href={result.drive_view_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View PDF
               </a>
-              <a className="download-btn" href={result.drive_download_url} target="_blank" rel="noopener noreferrer">
+              <a
+                className="download-btn"
+                href={result.drive_download_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Download PDF
               </a>
             </div>
