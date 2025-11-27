@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 const logo = "/logo.webp";
@@ -9,7 +9,17 @@ function App() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
+  const [visits, setVisits] = useState(3000); // default until fetch loads
+
   const API_URL = "https://dmc-finder-backend.onrender.com";
+
+  // Load visitor count
+  useEffect(() => {
+    fetch(`${API_URL}/visits`)
+      .then((res) => res.json())
+      .then((data) => setVisits(data.visits))
+      .catch(() => {});
+  }, []);
 
   const searchRoll = async () => {
     if (!roll.trim()) {
@@ -35,6 +45,7 @@ function App() {
         setError(data.detail || "Roll not found.");
       } else {
         setResult(data);
+        setVisits((v) => v + 1); // update UI instantly
       }
     } catch (err) {
       setError("Server error, try again later.");
@@ -45,6 +56,27 @@ function App() {
 
   return (
     <div className="page">
+
+      {/* ⭐ Visitor Badge (Top Right) */}
+      <div className="visitor-badge">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="eye-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+
+        <span id="visitorCount">{visits}</span>
+
+        <div className="tooltip">Total Visitors</div>
+      </div>
 
       {/* Header */}
       <header className="header header-row">

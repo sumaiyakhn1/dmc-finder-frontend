@@ -7,7 +7,6 @@
 }
 
 /* SHORT HEADER */
-/* Compact horizontal header */
 .header-row {
   display: flex;
   justify-content: center;
@@ -42,7 +41,6 @@
   margin: 0;
   opacity: 0.9;
 }
-
 
 /* SEARCH CARD */
 .search-card {
@@ -184,4 +182,47 @@
 @keyframes fade-in {
   from { opacity: 0; transform: scale(0.98); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* ⭐ VISITOR BADGE (TOP RIGHT) */
+.visitor-badge {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: white;
+  padding: 6px 14px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  font-weight: 600;
+  cursor: default;
+  z-index: 9999;
+}
+
+.eye-icon {
+  width: 22px;
+  height: 22px;
+  color: #ff7a22;
+}
+
+.tooltip {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  background: #ff7a22;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.visitor-badge:hover .tooltip {
+  opacity: 1;
+  transform: translateY(-3px);
 }
