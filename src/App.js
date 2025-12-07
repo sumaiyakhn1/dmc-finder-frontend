@@ -4,7 +4,7 @@ import "./App.css";
 const logo = "/logo.webp";
 
 function App() {
-  const [roll, setRoll] = useState("");
+  const [roll, setRoll] = useState("1230100207"); // ⭐ pre-filled example inside input
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
@@ -96,11 +96,11 @@ function App() {
         <div className="input-row">
           <input
             type="text"
-            placeholder="e.g. 1230100207"
             value={roll}
             onChange={(e) => setRoll(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && searchRoll()}
           />
+
           <button onClick={searchRoll} className="search-btn">
             Search
           </button>
