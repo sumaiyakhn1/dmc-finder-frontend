@@ -11,7 +11,7 @@ function App() {
 
   const [visits, setVisits] = useState(3000); // default until fetch loads
 
-  const API_URL = "https://dmc-finder-backend.onrender.com";
+  const API_URL = "http://localhost:8000";
 
   // Load visitor count
   useEffect(() => {
